@@ -1,3 +1,4 @@
+import javax.lang.model.UnknownEntityException;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
@@ -7,15 +8,17 @@ import java.util.stream.Stream;
 public class Streams {
     public static void main(String[] args) {
 
-        List<String> alphabet = Stream
+        List<Character> alphabet = Stream
                 .iterate('a', ch -> (char)(ch + 1)).limit(26)
                 .peek(n -> System.out.print(n + ","))
-                .map(ch -> Character.toString(ch))
                 .collect(Collectors.toList());
 
 
-        System.out.println();
+        System.out.println("\nGeneric method reference:");
         alphabet.forEach(Streams::printChar);  // Consumer
+        printChar("abc");
+        printChar(3456);
+        printChar(true);
         printChar(null);
 
 
@@ -26,15 +29,16 @@ public class Streams {
                     System.out.println();
                 });
 
-        Comparator comparator = new Comparator<String>() {
+        /**
+         * Tried to use anonymous class and comparator for reversed sort
+         */
+        Comparator comparator = new Comparator<Character>() {
 
             @Override
-            public int compare(String s1, String s2) {
-                char[] ch1 = s1.toCharArray();
-                char[] ch2 = s2.toCharArray();
-                if (ch1[0] > ch2[0]) {
+            public int compare(Character ch1, Character ch2) {
+                if (ch1 > ch2) {
                     return -1;
-                } else if (ch1[0] < ch2[0]) {
+                } else if (ch1 < ch2) {
                     return 1;
                 } else {
                     return 0;
@@ -70,8 +74,19 @@ public class Streams {
         System.out.println(binaryOperator.apply(5, 5));
     }
 
-    private static void printChar(String obj) {
+    /* Method to change
+    
+    private static void printChar(Object obj) {
         Optional<Object> tempObj = Optional.ofNullable(obj);
         System.out.println("Letter " + tempObj.orElse("nonObject"));
+    }
+     */
+
+    /**
+     * Using Generic
+     */
+    private static <T> void printChar(T obj) {
+        Optional<T> tempObj = Optional.ofNullable(obj);
+        System.out.println(tempObj.isPresent() ? ("Letter " + obj) : ("nonObject"));
     }
 }
