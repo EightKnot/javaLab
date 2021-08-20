@@ -10,9 +10,8 @@ public class Streams {
 
         List<Character> alphabet = Stream
                 .iterate('a', ch -> (char)(ch + 1)).limit(26)
-                .peek(n -> System.out.print(n + ","))
+//                .peek(n -> System.out.print(n + ","))
                 .collect(Collectors.toList());
-
 
         System.out.println("\nGeneric method reference:");
         alphabet.forEach(Streams::printEvrthg);  // Consumer
@@ -22,12 +21,12 @@ public class Streams {
         printEvrthg(null);
 
 
-        Stream.of(2, 3, 0, 1, 3)
+        /*Stream.of(2, 3, 0, 1, 3)
                 .map(x -> IntStream.range(0, x))
                 .forEach(n -> {
                     n.forEach(System.out::print);
                     System.out.println();
-                });
+                });*/
 
         /**
          * Tried to use anonymous class and comparator for reversed sort
@@ -51,30 +50,9 @@ public class Streams {
                 .sorted(comparator)
                 .forEach(System.out::println);
 
-
-
-/*--------------------------------------------------------------*/
-        /*-Functional interfaces-*/
-        Predicate<Integer> predicate = x -> x > 5;
-        System.out.println(predicate.test(6));   //true
-
-        Consumer<Integer> consumer = x -> System.out.println(x);   //System.out::println;
-        consumer.accept(5);
-
-        Function<Integer, String> function = x -> x.toString();   //Object::toString;
-        System.out.println(function.apply(5));
-
-        Supplier<String> supplier = () -> new String("A");
-        System.out.println(supplier.get());
-
-        UnaryOperator<Integer> unaryOperator = x -> x * x;
-        System.out.println(unaryOperator.apply(5));
-
-        BinaryOperator<Integer> binaryOperator = (x, y) -> x * y;
-        System.out.println(binaryOperator.apply(5, 5));
     }
 
-    /* Method to change
+    /* Method will be changed
 
     private static void printChar(Object obj) {
         Optional<Object> tempObj = Optional.ofNullable(obj);
