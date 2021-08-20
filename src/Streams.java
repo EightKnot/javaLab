@@ -15,11 +15,11 @@ public class Streams {
 
 
         System.out.println("\nGeneric method reference:");
-        alphabet.forEach(Streams::printChar);  // Consumer
-        printChar("abc");
-        printChar(3456);
-        printChar(true);
-        printChar(null);
+        alphabet.forEach(Streams::printEvrthg);  // Consumer
+        printEvrthg("abc");
+        printEvrthg(3456);
+        printEvrthg(true);
+        printEvrthg(null);
 
 
         Stream.of(2, 3, 0, 1, 3)
@@ -32,7 +32,7 @@ public class Streams {
         /**
          * Tried to use anonymous class and comparator for reversed sort
          */
-        Comparator comparator = new Comparator<Character>() {
+        Comparator<Character> comparator = new Comparator<Character>() {
 
             @Override
             public int compare(Character ch1, Character ch2) {
@@ -75,7 +75,7 @@ public class Streams {
     }
 
     /* Method to change
-    
+
     private static void printChar(Object obj) {
         Optional<Object> tempObj = Optional.ofNullable(obj);
         System.out.println("Letter " + tempObj.orElse("nonObject"));
@@ -85,7 +85,7 @@ public class Streams {
     /**
      * Using Generic
      */
-    private static <T> void printChar(T obj) {
+    private static <T> void printEvrthg(T obj) {
         Optional<T> tempObj = Optional.ofNullable(obj);
         System.out.println(tempObj.isPresent() ? ("Letter " + obj) : ("nonObject"));
     }

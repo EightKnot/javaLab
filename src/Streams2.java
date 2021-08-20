@@ -6,7 +6,9 @@ public class Streams2 {
 
         int maxAge = 90;
         int minAge = 18;
-        String[] names = new String[] {"Андрей", "Николай", "Владимир", "Константин", "Максим"};
+        String[] names = new String[] {"Андрей", "Николай", "Владимир", "Константин", "Максим",
+                "Александр", "Брайн", "Вильям", "Джеймс", "Джон", "Дональд", "Итан", "Кеннет",
+                "Кристофер", "Майкл", "Марк", "Пол", "Стивен", "Том", "Эдвард"};
 
         /**
          *  Generating a list of persons with random age
@@ -32,8 +34,7 @@ public class Streams2 {
                 .mapToInt(Person::getAge).sum();
         double midAge = ((double) ageSum) / personCount;
 
-        System.out.printf("Средний возраст персон с именем \"%s\" составляет %.2f года(лет).\n"
-                , targetName, midAge);
+        printResult(targetName, midAge);
 
         /**
          * Second attempt after "Practical Exercises" reading
@@ -43,9 +44,12 @@ public class Streams2 {
                 .mapToInt(Person::getAge)
                 .average()
                 .getAsDouble();
-        System.out.printf("Средний возраст персон с именем \"%s\" составляет %.2f года(лет)."
-                , targetName, midAge);
+        printResult(targetName, midAge);
+
     }
 
-
+    public static void printResult(String name, double age) {
+        System.out.printf("\nСредний возраст персон с именем \"%s\" составляет %.2f года(лет)."
+                , name, age);
+    }
 }
