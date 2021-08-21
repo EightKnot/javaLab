@@ -1,4 +1,5 @@
 import javax.lang.model.UnknownEntityException;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
@@ -15,9 +16,11 @@ public class Streams {
 
         System.out.println("\nGeneric method reference:");
         alphabet.forEach(Streams::printEvrthg);  // Consumer
+        //printEvrthg() check:
         printEvrthg("abc");
         printEvrthg(3456);
         printEvrthg(true);
+        printEvrthg(new Date());
         printEvrthg(null);
 
 
@@ -48,7 +51,7 @@ public class Streams {
         System.out.println("Comparator reverse sort:");
         alphabet.stream()
                 .sorted(comparator)
-                .forEach(System.out::println);
+                .forEach(Streams::printEvrthg);
 
     }
 
@@ -65,6 +68,6 @@ public class Streams {
      */
     private static <T> void printEvrthg(T obj) {
         Optional<T> tempObj = Optional.ofNullable(obj);
-        System.out.println(tempObj.isPresent() ? ("Letter " + obj) : ("nonObject"));
+        System.out.println(tempObj.isPresent() ? obj : ("nonObject"));
     }
 }
