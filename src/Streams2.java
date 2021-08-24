@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Streams2 {
@@ -44,6 +45,14 @@ public class Streams2 {
                 .mapToInt(Person::getAge)
                 .average()
                 .getAsDouble();
+        printResult(targetName, midAge);
+
+        /**
+         * Third attempt after "OracleDocs/Collections" reading
+         */
+        midAge = personList.stream()
+                .filter(person -> person.getName().equals(targetName))
+                .collect(Collectors.averagingInt(Person::getAge));
         printResult(targetName, midAge);
 
     }
