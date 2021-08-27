@@ -20,9 +20,11 @@ public class CollectionsSet {
 
         System.out.println("--------------------------------");
 
-        Set<Integer> mySet3 = new TreeSet<>(mySet1);
-        mySet3.add(10);
+        Set<Person> mySet3 = new TreeSet<>((p1, p2) -> p1.getName().compareTo(p2.getName()));
+        mySet3.add(new Person("Anton", 33));
+        mySet3.add(new Person("Pavel", 27));
+        mySet3.add(new Person("Kolian", 28));
         System.out.println("TreeSet:");
-        mySet3.forEach(System.out::println);
+        mySet3.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
     }
 }
